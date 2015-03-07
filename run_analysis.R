@@ -3,7 +3,8 @@
 #### Author: Antony Mapfumo
 
 rm(list=ls())
-
+require(plyr)
+setwd("/home/tony/Getting-and-Cleaning-Data-Coursera-Project")
 ## files and directories
 uci_hard_directory <- "UCI HAR Dataset"
 feature_file <- paste(uci_hard_directory, "/features.txt", sep = "")
@@ -60,4 +61,4 @@ names(sensor_mean_std) <- gsub('Freq$',"Frequency",names(sensor_mean_std))
 
 # Creates a second tidy data set
 sensor_avg_by_act_sub = ddply(sensor_mean_std, c("Subject","Activity"), numcolwise(mean))
-write.table(sensor_avg_by_act_sub, file = "tidy.txt")
+write.table(sensor_avg_by_act_sub, file = "tidy.txt", row.names=FALSE)
